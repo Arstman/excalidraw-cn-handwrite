@@ -6,6 +6,7 @@
 .envrc
 .eslintcache
 .history
+.github
 .idea
 .vercel
 .vscode
