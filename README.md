@@ -1,3 +1,38 @@
+## Excalidraw 添加简体中文手写字体
+
+本版本是在最新版上做的添加修改, 具体如下:
+
+- 添加简体中文手写字体, 同时保留原字体
+- 添加中文手写字体设置选项和按钮, 同时保留原版设置
+- 去掉 Excalidraw+ 链接和显示
+- 去掉 googletagmanager 跟踪代码
+- 在保留原运行命令情况下, 增加`build:local` 命令方便生成静态部署文件
+
+### 使用和部署
+
+首先确定本地 nodejs 版本为 v14, 如果不是, 请自行安装, 比如利用`nvm`:
+
+```shell
+nvm install 14
+nvm use 14
+```
+
+将本项目`clone`到本地, 进入项目目录后:
+
+```shell
+npm install
+```
+
+然后生成静态部署文件:
+
+```shell
+npm run build:local
+```
+
+生成的静态文件在`build`文件夹里, 可以任意部署到 githubpage 或七牛云等支持静态网站的空间内
+
+以下为原 README.md 内容
+
 <div align="center" style="display:flex;flex-direction:column;">
   <a href="https://excalidraw.com">
     <img width="540" src="./public/og-image-sm.png" alt="Excalidraw logo: Sketch handrawn like diagrams." />
