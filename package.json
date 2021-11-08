@@ -95,6 +95,7 @@
     "build:app": "REACT_APP_GIT_SHA=$VERCEL_GIT_COMMIT_SHA react-scripts build",
     "build:version": "node ./scripts/build-version.js",
     "build": "yarn build:app && yarn build:version",
+    "build:local": "react-scripts build",
     "eject": "react-scripts eject",
     "fix:code": "yarn test:code --fix",
     "fix:other": "yarn prettier --write",
