@@ -48,7 +48,6 @@ import { createInverseContext } from "../../createInverseContext";
 import { t } from "../../i18n";
 import { UserIdleState } from "../../types";
 import { IDLE_THRESHOLD, ACTIVE_THRESHOLD } from "../../constants";
-import { trackEvent } from "../../analytics";
 import { isInvisiblySmallElement } from "../../element";
 import {
   encodeFilesForUpload,
@@ -236,7 +235,6 @@ class CollabWrapper extends PureComponent<Props, CollabState> {
   };
 
   openPortal = async () => {
-    trackEvent("share", "room creation");
     return this.initializeSocketClient(null);
   };
 
@@ -248,7 +246,6 @@ class CollabWrapper extends PureComponent<Props, CollabState> {
     if (window.confirm(t("alerts.collabStopOverridePrompt"))) {
       window.history.pushState({}, APP_NAME, window.location.origin);
       this.destroySocketClient();
-      trackEvent("share", "room closed");
 
       this.props.onRoomClose?.();
 

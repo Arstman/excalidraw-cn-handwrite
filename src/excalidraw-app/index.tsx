@@ -257,7 +257,6 @@ const initializeScene = async (opts: {
   return { scene: null, isExternalScene: false };
 };
 
-
 const ExcalidrawWrapper = () => {
   const [errorMessage, setErrorMessage] = useState("");
   let currentLangCode = languageDetector.detect() || defaultLang.code;
@@ -505,7 +504,7 @@ const ExcalidrawWrapper = () => {
     }
   };
 
-   const renderFooter = useCallback(
+  const renderFooter = useCallback(
     (isMobile: boolean) => {
       const renderEncryptedIcon = () => (
         <a
@@ -541,8 +540,6 @@ const ExcalidrawWrapper = () => {
               <legend>{t("labels.language")}</legend>
               {renderLanguageList()}
             </fieldset>
-            {/* FIXME remove after 2021-05-20 */}
-
           </div>
         );
       }

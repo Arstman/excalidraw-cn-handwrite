@@ -9,7 +9,6 @@ import CollabWrapper from "./CollabWrapper";
 import { ExcalidrawElement } from "../../element/types";
 import { BROADCAST, FILE_UPLOAD_TIMEOUT, SCENE } from "../app_constants";
 import { UserIdleState } from "../../types";
-import { trackEvent } from "../../analytics";
 import { throttle } from "lodash";
 import { newElementWith } from "../../element/mutateElement";
 import { BroadcastedExcalidrawElement } from "./reconciliation";
@@ -35,7 +34,6 @@ class Portal {
     this.socket.on("init-room", () => {
       if (this.socket) {
         this.socket.emit("join-room", this.roomId);
-        trackEvent("share", "room joined");
       }
     });
     this.socket.on("new-user", async (_socketId: string) => {

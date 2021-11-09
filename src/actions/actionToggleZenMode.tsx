@@ -1,12 +1,9 @@
 import { CODES, KEYS } from "../keys";
 import { register } from "./register";
-import { trackEvent } from "../analytics";
 
 export const actionToggleZenMode = register({
   name: "zenMode",
   perform(elements, appState) {
-    trackEvent("view", "mode", "zen");
-
     return {
       appState: {
         ...appState,
