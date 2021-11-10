@@ -3,10 +3,12 @@
 本版本是在最新版上做的添加修改, 具体如下:
 
 - 添加简体中文手写字体, 字体为可免费商用的`杨任东竹石体`, 压缩为 woff2 格式, 仅 1.7m 大小,极致流畅体验
+- 去掉多余的翻译文件, 仅保留 en 和简体中文
 - 保留原版字体
 - 添加中文手写字体设置选项和按钮, 同时保留原版设置
 - 去掉 Excalidraw+ 链接和显示
 - 去掉 googletagmanager 跟踪代码
+- 去掉 google 事件分析代码
 - 在保留原运行命令情况下, 增加`build:local` 命令方便生成静态部署文件
 
 ### 使用和部署
@@ -31,6 +33,35 @@ npm run build:local
 ```
 
 生成的静态文件在`build`文件夹里, 可以任意部署到 githubpage 或七牛云等支持静态网站的空间内
+
+### 注意事项
+
+1. 关于导出 svg 格式无法正常显示中文手写字体的情况, 这里需要先把`public/Chinese.woff2`文件上传到你自己的空间, 然后确保空间域名可访问, 接着自行修改一处代码, 文件在 `src/scene/export.ts`里面
+
+```js
+  <defs>
+  <style>
+    @font-face {
+      font-family: "Virgil";
+      src: url("https://excalidraw.com/Virgil.woff2");
+    }
+    @font-face {
+      font-family: "Cascadia";
+      src: url("https://excalidraw.com/Cascadia.woff2");
+    }
+// 以下手动添加代码
+    @font-face {
+      font-family: "Chinese";
+      src: url("https://[此处填你自己的域名地址]/Chinese.woff2");
+    }
+
+```
+
+当然上面的两个字体文件也可以改成你自己的空间地址, 修改后在重新`npm run build:local`生成新的部署文件.
+
+另: Firefox 下不支持 svg 字体跨站延迟加载, 所以导出的 svg 最好在 chrome 系浏览器下查看
+
+2. 在线协作功能缺失, 这是官方没有提供, 咱也没办法, 虽然有人提出了一些方案, 但是及其麻烦; 需要这方面的还是等官方吧.
 
 以下为原 README.md 内容
 

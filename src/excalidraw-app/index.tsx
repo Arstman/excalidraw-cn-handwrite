@@ -1,6 +1,5 @@
 import LanguageDetector from "i18next-browser-languagedetector";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
-import { trackEvent } from "../analytics";
 import { getDefaultAppState } from "../appState";
 import { ErrorDialog } from "../components/ErrorDialog";
 import { TopErrorBoundary } from "../components/TopErrorBoundary";
@@ -10,7 +9,6 @@ import {
   STORAGE_KEYS,
   TITLE_TIMEOUT,
   URL_HASH_KEYS,
-  VERSION_TIMEOUT,
 } from "../constants";
 import { loadFromBlob } from "../data/blob";
 import { ImportedDataState } from "../data/types";
@@ -34,7 +32,6 @@ import {
 } from "../types";
 import {
   debounce,
-  getVersion,
   preventUnload,
   ResolvablePromise,
   resolvablePromise,
@@ -275,13 +272,6 @@ const ExcalidrawWrapper = () => {
     initialStatePromiseRef.current.promise =
       resolvablePromise<ImportedDataState | null>();
   }
-
-  useEffect(() => {
-    // Delayed so that the app has a time to load the latest SW
-    setTimeout(() => {
-      trackEvent("load", "version", getVersion());
-    }, VERSION_TIMEOUT);
-  }, []);
 
   const [excalidrawAPI, excalidrawRefCallback] =
     useCallbackRefState<ExcalidrawImperativeAPI>();
